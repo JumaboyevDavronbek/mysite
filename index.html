@@ -1,117 +1,67 @@
 <!DOCTYPE html>
 <html lang="uz">
 
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Sahifasi</title>
-    <style>
-        /* Body styling */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    <title>Bo‘yoq tubiklari rang aralashtirgichi. Codepen tanlovi</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+    
+  <body>
+  <header>
+	<div class="title"><em>Siqish</em> Lababaratoriyasi</div>
+	<div class="subtitle">Bo‘yoq tubiklari rang aralashtirgichi</div>
+	<div class="tag">✦ #cpc-rang-palitrasi · #codepentanlov ✦</div>
+</header>
 
-        /* Login container */
+<section class="tubes-section" aria-label="Bo‘yoq tubiklari palitrasi">
+	<div class="tubes-header">
+		<div class="tubes-label">↓ Rang qo‘shish uchun tubikni siqing</div>
+		<button class="shuffle-btn" onclick="shuffleTubes()" title="Yangi palitra tanlash">
+			<span class="shuffle-icon">⇄</span> Yangi palitra
+		</button>
+	</div>
+	<div class="tubes-rack" id="tubesRack" role="list"></div>
+</section>
 
-        .login-container {
-            background: white;
-            padding: 40px 50px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            width: 350px;
-        }
+<section class="mix-zone" aria-label="Aralashtirish hududi">
 
-        .login-container h2 {
-            margin-bottom: 30px;
-            color: #333;
-        }
+	<div class="bowl-wrap">
+		<div class="bowl-label">Aralashtirish kosasi</div>
+		<div class="bowl-outer" id="bowlOuter" aria-label="Bo‘yoq aralashtirish maydoni">
+			<canvas id="mixCanvas" width="260" height="260"></canvas>
+			<div class="bowl-empty-msg" id="emptyMsg" aria-hidden="true">
+				<div class="arrow">↑</div>
+				<span>Yuqoridagi tubiklarni siqing</span>
+			</div>
+		</div>
+		<button class="clear-bowl-btn" id="btnClear" onclick="clearBowl()" aria-label="Aralashtirish kosasini tozalash">
+			<span class="icon">↺</span> Kosani tozalash
+		</button>
+	</div>
 
-        /* Input fields */
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px 15px;
-            margin: 10px 0 20px 0;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-sizing: border-box;
-            transition: 0.3s;
-        }
+	<aside class="result-panel" aria-label="Aralash natija">
 
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 5px #667eea;
-            outline: none;
-        }
+		<div class="result-swatch" id="resultSwatch" role="img" aria-label="Aralashtirilgan rang ko‘rinishi"></div>
 
-        /* Button styling */
-        button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            background: #667eea;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+		<div>
+			<div class="result-hex-label">Aralashtirilgan rang</div>
+			<div class="result-hex" id="resultHex" onclick="copyHex()" role="button" tabindex="0" aria-label="Hex qiymatini nusxalash uchun bosing" onkeydown="if(event.key==='Enter'||event.key===' ')copyHex()">#——</div>
+		</div>
 
-        button:hover {
-            background: #5a67d8;
-        }
+		<div class="colormix-snippet" aria-label="CSS color-mix formulasi">
+			<div class="snippet-label">CSS color-mix()</div>
+			<div class="snippet-code" id="snippetCode">
+				<span style="color:var(--rule)">// formulani ko‘rish uchun tubiklarni siqing</span>
+			</div>
+		</div>
 
-        /* Label styling */
-        label {
-            display: block;
-            text-align: left;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: 500;
-        }
+	</aside>
+</section>
 
-        /* Responsive */
-        @media (max-width: 400px) {
-            .login-container {
-                width: 90%;
-                padding: 30px 20px;
-            }
-        }
-    </style>
-    <script>
-        function login() {
-            var username = document.getElementById("username").value
-            var password = document.getElementById("password").value
-            if (username === "admin" && password === "jumaboyev") {
-                window.location.href = "admin.html"
-            } else if (username === "user" && password === "davronbek") {
-                window.location.href = "user.html"
-            } else {
-                alert("Noto'g'ri foydalanuvchi nomi yoki parol!")
-            }
-        } 0
-    </script>
-</head>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script  src="./script.js"></script>
 
-<body>
-    <div class="login-container">
-        <h2>Login Sahifasi</h2>
-        <label for="username">Foydalanuvchi nomi:</label>
-        <input type="text" id="username" required>
-
-        <label for="password">Parol:</label>
-        <input type="password" id="password" required>
-
-        <button onclick="login()">Kirish</button>
-    </div>
-</body>
-
+  </body>
+  
 </html>
